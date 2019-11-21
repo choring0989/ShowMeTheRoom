@@ -9,15 +9,33 @@ window.onload = function () {
 	initThree();
 	addDirectionalLight();
 	
-	// window click event
+
+/***************Insert Furniture Mode***********************/
+    var InsertButton = document.getElementById("insert");
+	InsertButton.addEventListener("click", function(event) { 
+        cl=1;
+	});
+
     window.addEventListener("click", function(event){
-		// check log
+		if(cl==1&&event.clientY>50){	
+        // check log
 		console.log('clcik event listener');
 		console.log(event.clientX, event.clientY);
 		// load OBJ file
 		loadObjLoader(event.clientX, event.clientY, './furniture/bathroomCabinet.obj');
 		//console.log(loader.position);
+        }
     } );
+
+
+/***************Change View Space Mode***********************/
+    var ViewButton = document.getElementById("view");
+	    ViewButton.addEventListener("click", function(event) { 
+        cl=0;
+        
+	});
+
+
 
 	//loadObjLoader('./furniture/cat.obj');
 
