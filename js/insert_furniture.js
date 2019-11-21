@@ -15,10 +15,11 @@ window.onload = function () {
 		console.log('clcik event listener');
 		console.log(event.clientX, event.clientY);
 		// load OBJ file
-		loadObjLoader('./furniture/bathroomCabinet.obj');
+		loadObjLoader(event.clientX, event.clientY, './furniture/bathroomCabinet.obj');
+		//console.log(loader.position);
     } );
 
-	loadObjLoader('./furniture/cat.obj');
+	//loadObjLoader('./furniture/cat.obj');
 
 	/**
 	 * DirectionalLight를 추가하는 함수
@@ -40,11 +41,13 @@ window.onload = function () {
 	 *
 	 * @method loadObjLoader
 	 */
-	function loadObjLoader(obj) {
+	function loadObjLoader(x, y, obj) {
 		loader = new THREE.OBJLoader();
 		loader.load(obj, function (object) {
 			// finish to load model
 			scene.add(object);
+			// set position
+			object.position.set((x-366)/50, 0, (y-477)/50);
 		}, function (xhr) {
 			// loading model
 			console.log(xhr.loaded / xhr.total * 100, '% loaded');
@@ -71,7 +74,7 @@ window.onload = function () {
 		renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 		document.body.appendChild(renderer.domElement);
 
-		let axes = new THREE.AxesHelper(0);
+		let axes = new THREE.AxesHelper(5);
 		scene.add(axes);
 
 		camera.position.x = 2;
