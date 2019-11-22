@@ -1,9 +1,11 @@
 var gl;
+var furniture_path;
 
 window.onload = function () {
+  furniture_path = './furniture/bathroomCabinet.obj'
    let scene = new THREE.Scene();
    let light, gird, gridH, camera;
-   let mouse;   
+   let mouse;
    let loader; // OBJLoader 객체를 넣을 변수를 선언
    let cl, roomsize;
    // testing~ start
@@ -18,8 +20,9 @@ window.onload = function () {
 		mouse.y = Math.round((e.clientY - 300) / wh);
 		console.log(e.clientX, e.clientY);
 		console.log(mouse.x, mouse.y);
-        loadObjLoader(mouse, './furniture/bathroomCabinet.obj');
+        loadObjLoader(mouse, furniture_path);
 	}
+
 }
    // testing~ end
 
@@ -28,7 +31,8 @@ window.onload = function () {
 	var btn_plus = document.getElementById("plus");
 	var btn_minus = document.getElementById("minus");
 	var inner = document.getElementById("roomsize").innerText;
-	
+  var btn_bathroomMirror = document.getElementById("bathroomMirror");
+
 	btn_plus.addEventListener("click", function(event) {
 		if (Number(inner) < 20) {
 			document.getElementById("roomsize").innerText = Number(inner)+2;
@@ -48,7 +52,12 @@ window.onload = function () {
 			inner = document.getElementById("roomsize").innerText;
 		}
 	});
-   
+
+  btn_bathroomMirror.addEventListener("click", function(event){
+    furniture_path = './furniture/bathroomMirror.obj';
+    console.log("furniture path ="+'./furniture/bathroomCabinet.obj')
+  });
+
    initThree();
    addDirectionalLight();
    addGridView();
@@ -62,17 +71,17 @@ window.onload = function () {
 		camera.position.z = 0;
 		cl=1;
 	});
-   
+
    /** *************Change View Space Mode********************** */
     var ViewButton = document.getElementById("view");
-    ViewButton.addEventListener("click", function(event) { 
+    ViewButton.addEventListener("click", function(event) {
         cl=0;
    });
-   
+
    /*
    // click event for inserting furniture
     window.addEventListener("click", function(event){
-      if(cl==1&&event.clientY>50){   
+      if(cl==1&&event.clientY>50){
         // check log
       console.log('clcik event listener');
       console.log(event.clientX, event.clientY);
@@ -91,7 +100,7 @@ window.onload = function () {
       light.position.z = 5;
       scene.add(light);
    }
-   
+
    /** GridHelper를 추가하는 함수 */
    function addGridView() {
       // add grid
@@ -126,6 +135,16 @@ window.onload = function () {
       });
    }
 
+   //furnitre 이름 목록 불러오
+   function getFilename(){
+      var testFolder = './furniture';
+      var fs = require('fs');
+
+      fs.readdir(testFolder, function(error, filelist){
+       console.log(filelist);
+      })
+   }
+
    /** Threejs 초기화 함수 */
    function initThree() {
       let container;
@@ -134,14 +153,14 @@ window.onload = function () {
       camera.position.x = 0;
       camera.position.y = 6;
       camera.position.z = 0;
-      
+
       //testing~ start
       rayCast = new THREE.Raycaster();
       mouse = new THREE.Vector2();
       mouse.x = mouse.y = -1;
-      
+
       //testing~ end
-      
+
       let renderer = new THREE.WebGLRenderer({
          antialias: true
       });
@@ -156,14 +175,14 @@ window.onload = function () {
       /*
        * let axes = new THREE.AxesHelper(5); scene.add(axes);
        */
-      
+
       controls = new THREE.OrbitControls(camera, renderer.domElement);
       controls.rotateSpeed = 1.0;
       controls.zoomSpeed = 1.2;
       controls.panSpeed = 0.8;
       controls.minDistance = -50;
       controls.maxDistance = 10;
-      
+
       function animate() {
          requestAnimationFrame(animate);
          if (cl == 1) {
