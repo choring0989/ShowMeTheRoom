@@ -10,7 +10,7 @@ window.onload = function () {
 	addDirectionalLight();
 	
 
-/***************Insert Furniture Mode***********************/
+/** *************Insert Furniture Mode********************** */
     var InsertButton = document.getElementById("insert");
 	InsertButton.addEventListener("click", function(event) { 
         cl=1;
@@ -23,12 +23,12 @@ window.onload = function () {
 		console.log(event.clientX, event.clientY);
 		// load OBJ file
 		loadObjLoader(event.clientX, event.clientY, './furniture/bathroomCabinet.obj');
-		//console.log(loader.position);
+		// console.log(loader.position);
         }
     } );
 
 
-/***************Change View Space Mode***********************/
+/** *************Change View Space Mode********************** */
     var ViewButton = document.getElementById("view");
 	    ViewButton.addEventListener("click", function(event) { 
         cl=0;
@@ -37,11 +37,11 @@ window.onload = function () {
 
 
 
-	//loadObjLoader('./furniture/cat.obj');
+	// loadObjLoader('./furniture/cat.obj');
 
 	/**
 	 * DirectionalLight를 추가하는 함수
-	 *
+	 * 
 	 * @method addDirectionalLight
 	 */
 	function addDirectionalLight() {
@@ -56,7 +56,7 @@ window.onload = function () {
 
 	/**
 	 * .obj 파일의 모델을 로드하는 함수
-	 *
+	 * 
 	 * @method loadObjLoader
 	 */
 	function loadObjLoader(x, y, obj) {
@@ -77,7 +77,7 @@ window.onload = function () {
 
 	/**
 	 * Threejs 초기화 함수
-	 *
+	 * 
 	 * @method initThree
 	 */
 	 
@@ -92,8 +92,9 @@ window.onload = function () {
 		renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 		document.body.appendChild(renderer.domElement);
 
-		let axes = new THREE.AxesHelper(5);
-		scene.add(axes);
+		/*
+		 * let axes = new THREE.AxesHelper(5); scene.add(axes);
+		 */
 
 		camera.position.x = 2;
 		camera.position.y = 1;
@@ -103,8 +104,21 @@ window.onload = function () {
 		controls.rotateSpeed = 1.0;
 		controls.zoomSpeed = 1.2;
 		controls.panSpeed = 0.8;
-		controls.minDistance = 5;
-		controls.maxDistance = 100;
+		controls.minDistance = -50;
+		controls.maxDistance = 10;
+		
+		grid = new THREE.Object3D();
+		  
+		var size = 8;
+		var divisions = 100;
+		
+		var gridH = new THREE.GridHelper(size, divisions, 0x0000ff, 0x808080);
+		gridH.position.y = 0;
+		gridH.position.x = 0;
+		gridH.rotation.x = 0;
+		grid.add(gridH);
+		
+		scene.add(grid);
 
 		function animate() {
 			requestAnimationFrame(animate);
