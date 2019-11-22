@@ -5,6 +5,7 @@ window.onload = function () {
 	let light;
 	let camera;
 	let loader; // OBJLoader 객체를 넣을 변수를 선언
+	let container;
 	
 	initThree();
 	addDirectionalLight();
@@ -87,10 +88,11 @@ window.onload = function () {
 		let renderer = new THREE.WebGLRenderer({
 			antialias: true
 		});
-		renderer.setSize(window.innerWidth, window.innerHeight);
+		container = document.getElementById('main');
+		renderer.setSize(container.offsetWidth,  window.innerHeight);
 		renderer.shadowMap.enabled = true;
 		renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-		document.body.appendChild(renderer.domElement);
+		container.appendChild( renderer.domElement );
 
 		/*
 		 * let axes = new THREE.AxesHelper(5); scene.add(axes);
