@@ -75,7 +75,6 @@ window.onload = function () {
       gridH.position.y = 0;
       gridH.position.x = 0;
       gridH.position.z = 0;
-      gridH.rotation.x = 0;
       grid.add(gridH);
       scene.add(grid);
    }
@@ -122,8 +121,7 @@ window.onload = function () {
       renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
       container.appendChild( renderer.domElement );
-      renderer.domElement.addEventListener('click', onMouseClick, false);
-      document.body.appendChild(renderer.domElement);
+      container.addEventListener('click', onMouseClick, false);
 
       // x,y,z lines
       /*
