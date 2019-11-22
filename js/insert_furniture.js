@@ -31,7 +31,7 @@ window.onload = function () {
 	
 	btn_plus.addEventListener("click", function(event) {
 		if (Number(inner) < 20) {
-			document.getElementById("roomsize").innerText = Number(inner)+1;
+			document.getElementById("roomsize").innerText = Number(inner)+2;
 			roomsize = document.getElementById("roomsize").innerText;
 			scene.remove(grid);
 			addGridView();
@@ -40,8 +40,8 @@ window.onload = function () {
 	});
 
 	btn_minus.addEventListener("click", function(event) {
-		if (Number(inner) > 5) {
-			document.getElementById("roomsize").innerText = Number(inner)-1;
+		if (Number(inner) > 6) {
+			document.getElementById("roomsize").innerText = Number(inner)-2;
 			roomsize = document.getElementById("roomsize").innerText;
 			scene.remove(grid);
 			addGridView();
