@@ -48,21 +48,37 @@
 
 	<div class="row">
 		<!-- right bar -->
-		<div class="col-lg-2" Style="background-color: #000000;">
-		</div>
+		<div class="col-lg-2" Style="background-color: #000000;"></div>
 
 		<!-- WebGL -->
-		<div id='main' class="col-lg-9"></div>
+		<div id='main' class="col-lg-8"></div>
 
 		<!-- left bar -->
-		<div class="col-lg-1" Style="background-color: #000000;">
-			<div id="view" class="user-panel">
+		<div class="col-lg-2" Style="background-color: #000000;">
+			<div id="view" class="user-panel"
+				style="margin: 10px 45px 10px 10px; text-align: center">
 				<a href="#">Change View Space Mode</a>
 			</div>
 
-			<div id="insert" class="user-panel">
+			<div id="insert" class="user-panel"
+				style="margin: 10px 40px 10px 0px">
 				<a href="#">Insert Furniture Mode</a>
 			</div>
+
+			<h6 style="color: #ffffff; text-align: center">방 크기 조절</h6>
+			<div class="row">
+				<div id="minus" class="user-panel"
+					style="margin: 10px 10px 10px 70px">
+					<a href="#">-</a>
+				</div>
+				<h6 id="roomsize"
+					style="color: #ffffff; text-align: center; margin-top: 18px">8</h6>
+				<div id="plus" class="user-panel"
+					style="margin: 10px 40px 10px 10px">
+					<a href="#">+</a>
+				</div>
+			</div>
+
 		</div>
 
 	</div>
