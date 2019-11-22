@@ -3,23 +3,24 @@ var gl;
 window.onload = function () {
    let scene = new THREE.Scene();
    let light, gird, gridH, camera;
-   let rayCast, mouse;   
+   let divisions;
+   let mouse;   
    let loader; // OBJLoader 객체를 넣을 변수를 선언
    let cl;
    // testing~ start
    // mouse click event function
    let onMouseClick = function(e){
       if (cl==1) {
-         let gap1 = e.clientX - e.offsetX;
-         let gap2 = e.clientY - e.offsetY;
-         mouse.x = ((e.clientX - gap1) / (window.innerWidth)) * 2 - 1;
-         mouse.y = -((e.clientY - gap2) / (window.innerHeight)) * 2 + 1;
-         console.log(mouse.x, mouse.y);
-         rayCast.setFromCamera(mouse,camera);
-         loadObjLoader(rayCast.ray.at(10), './furniture/bathroomCabinet.obj');
-         //loadObjLoader(mouse, './furniture/bathroomCabinet.obj');
-      }
-   }
+         // grid 변의 길이
+		var wh = 360/(divisions/2);
+		console.log(wh);
+		mouse.x = Math.round((e.clientX - 460) / wh);
+		mouse.y = Math.round((e.clientY - 300) / wh);
+		console.log(e.clientX, e.clientY);
+		console.log(mouse.x, mouse.y);
+        loadObjLoader(mouse, './furniture/bathroomCabinet.obj');
+	}
+}
    // testing~ end
    
    initThree();
@@ -28,17 +29,17 @@ window.onload = function () {
 
    // button event
    /** *************Insert Furniture Mode********************** */
-    var InsertButton = document.getElementById("insert");
-   InsertButton.addEventListener("click", function(event) {
-      camera.position.x = 0;
-      camera.position.y = 6;
-      camera.position.z = 0;
-        cl=1;
-   });
+	var InsertButton = document.getElementById("insert");
+    InsertButton.addEventListener("click", function(event) {
+		camera.position.x = 0;
+		camera.position.y = 6;
+		camera.position.z = 0;
+		cl=1;
+	});
    
    /** *************Change View Space Mode********************** */
     var ViewButton = document.getElementById("view");
-   ViewButton.addEventListener("click", function(event) { 
+    ViewButton.addEventListener("click", function(event) { 
         cl=0;
    });
    
@@ -68,8 +69,9 @@ window.onload = function () {
    /** GridHelper를 추가하는 함수 */
    function addGridView() {
       // add grid
-      var size = 10;
-      var divisions = 10;
+	  // size 고정
+      var size = 8;
+      divisions = 10;
       grid = new THREE.Object3D();
       gridH = new THREE.GridHelper(size, divisions, 0x0000ff, 0x808080);
       gridH.position.y = 0;
@@ -85,6 +87,7 @@ window.onload = function () {
       loader.load(obj, function (object) {
          // set position of object
          object.position.set(position.x, 0, position.y);
+		 object.scale.x = object.scale.y = object.scale.z = 3;
          //object.position.set(1, 0, 1);
          // add object
          scene.add(object);
@@ -100,7 +103,7 @@ window.onload = function () {
    /** Threejs 초기화 함수 */
    function initThree() {
       let container;
-      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
+      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
       // set camera position
       camera.position.x = 0;
       camera.position.y = 6;
@@ -117,7 +120,7 @@ window.onload = function () {
          antialias: true
       });
       container = document.getElementById('main');
-      renderer.setSize(container.offsetWidth, window.innerHeight);
+      renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
       container.appendChild( renderer.domElement );
