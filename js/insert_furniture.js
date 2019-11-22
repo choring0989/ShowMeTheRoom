@@ -3,7 +3,6 @@ var gl;
 window.onload = function () {
    let scene = new THREE.Scene();
    let light, gird, gridH, camera;
-   let divisions;
    let mouse;   
    let loader; // OBJLoader 객체를 넣을 변수를 선언
    let cl, roomsize;
@@ -12,7 +11,8 @@ window.onload = function () {
    let onMouseClick = function(e){
       if (cl==1) {
          // grid 변의 길이
-		var wh = 360/(divisions/2);
+		var wh = 360/(roomsize/2);
+		console.log('wh=');
 		console.log(wh);
 		mouse.x = Math.round((e.clientX - 460) / wh);
 		mouse.y = Math.round((e.clientY - 300) / wh);
@@ -97,7 +97,7 @@ window.onload = function () {
       // add grid
 	  // size 고정
       var size = 8;
-      //divisions = 10;
+      var size = 8;
       grid = new THREE.Object3D();
       gridH = new THREE.GridHelper(size, roomsize, 0x0000ff, 0x808080);
       gridH.position.y = 0;
