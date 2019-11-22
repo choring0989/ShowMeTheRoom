@@ -90,6 +90,7 @@ window.onload = function () {
 		});
 		container = document.getElementById('main');
 		renderer.setSize(container.offsetWidth,  window.innerHeight);
+		//
 		renderer.shadowMap.enabled = true;
 		renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 		container.appendChild( renderer.domElement );
