@@ -9,6 +9,8 @@ window.onload = function () {
    let loader; // OBJLoader 객체를 넣을 변수를 선언
    let cl, roomsize;
    let objarr = new Array();
+   let mtlLoader; // MTLLoader 객체를 넣을 변수
+   
    // testing~ start
    // mouse click event function
    let onMouseClick = function(e){
@@ -21,7 +23,8 @@ window.onload = function () {
 		mouse.y = Math.round((e.clientY - 300) / wh);
 		console.log(e.clientX, e.clientY);
 		console.log(mouse.x, mouse.y);
-        loadObjLoader(mouse, furniture_path);
+		
+		loadMTLLoader(mouse, furniture_path);
 	}
 
 }
@@ -128,7 +131,7 @@ window.onload = function () {
    }
 
    /** .obj 파일의 모델을 로드하는 함수 */
-   function loadObjLoader(position, obj) {
+   function loadObjLoader(position, obj, materials) {
       loader = new THREE.OBJLoader();
       loader.load(obj, function (object) {
          // set position of object
@@ -136,6 +139,7 @@ window.onload = function () {
 		 object.scale.x = object.scale.y = object.scale.z = 3;
          //object.position.set(1, 0, 1);
          // add object
+		 loader.setMaterials(materials);
 		 objarr.push(object);
          scene.add(object);
       }, function (xhr) {
@@ -145,6 +149,23 @@ window.onload = function () {
          // fail to load model
          alert('모델을 로드 중 오류가 발생하였습니다.');
       });
+   }
+   
+   /** 텍스쳐 입히는 함수 */
+   function loadMTLLoader(position, obj) {
+       mtlLoader = new THREE.MTLLoader();
+       var name = "."+obj.split(".")[1]+".mtl";
+       console.log(name);
+       // 로드할 Material 파일 명을 입력합니다.
+       mtlLoader.load(name, function (materials) {
+           // 로드 완료되었을때 호출하는 함수
+           materials.preload();
+           loadObjLoader(position, obj, materials);
+       }, function (error) {
+           // 로드가 실패했을때 호출하는 함수
+           console.error('MTLLoader 로드 중 오류가 발생하였습니다.', error);
+           alert('MTLLoader 로드 중 오류가 발생하였습니다.');
+       });
    }
 
    //furnitre 이름 목록 불러오
