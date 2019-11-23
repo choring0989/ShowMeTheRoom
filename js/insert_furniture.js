@@ -8,6 +8,7 @@ window.onload = function () {
    let mouse;
    let loader; // OBJLoader 객체를 넣을 변수를 선언
    let cl, roomsize;
+   let objarr = new Array();
    // testing~ start
    // mouse click event function
    let onMouseClick = function(e){
@@ -38,6 +39,11 @@ window.onload = function () {
 			document.getElementById("roomsize").innerText = Number(inner)+2;
 			roomsize = document.getElementById("roomsize").innerText;
 			scene.remove(grid);
+			var temp = objarr.length;
+			for(var i=0; i<temp; i++){
+				var value = objarr.pop();
+				scene.remove(value);
+			}
 			addGridView();
 			inner = document.getElementById("roomsize").innerText;
 		}
@@ -48,6 +54,11 @@ window.onload = function () {
 			document.getElementById("roomsize").innerText = Number(inner)-2;
 			roomsize = document.getElementById("roomsize").innerText;
 			scene.remove(grid);
+			var temp = objarr.length;
+			for(var i=0; i<temp; i++){
+				var value = objarr.pop();
+				scene.remove(value);
+			}
 			addGridView();
 			inner = document.getElementById("roomsize").innerText;
 		}
@@ -125,6 +136,7 @@ window.onload = function () {
 		 object.scale.x = object.scale.y = object.scale.z = 3;
          //object.position.set(1, 0, 1);
          // add object
+		 objarr.push(object);
          scene.add(object);
       }, function (xhr) {
          // loading model
