@@ -177,10 +177,11 @@ window.onload = function () {
          antialias: true
       });
       container = document.getElementById('main');
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      //renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(1100, 550);
       renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-      container.appendChild( renderer.domElement );
+      container.appendChild(renderer.domElement);
       container.addEventListener('click', onMouseClick, false);
 
       // x,y,z lines
