@@ -136,12 +136,12 @@ window.onload = function () {
       loader.load(obj, function (object) {
          // set position of object
          object.position.set(position.x, 0, position.y);
-		       object.scale.x = object.scale.y = object.scale.z = 3;
+		     object.scale.x = object.scale.y = object.scale.z = 3;
          //object.position.set(1, 0, 1);
          // add object
-		 loader.setMaterials(materials);
-		 objarr.push(object);
-         scene.add(object);
+		 //loader.setMaterials(materials);
+		 //objarr.push(object);
+         //scene.add(object);
       }, function (xhr) {
          // loading model
          console.log(xhr.loaded / xhr.total * 100, '% loaded');
@@ -164,7 +164,7 @@ window.onload = function () {
            materials.preload();
            loadObjLoader(position, obj, materials);
 
-           var obj_loader = new THREE.OBJLoader();
+            var obj_loader = new THREE.OBJLoader();
             obj_loader.setMaterials(materials)
             obj_loader.load(obj,
             function(object) {
