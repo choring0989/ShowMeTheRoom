@@ -35,6 +35,7 @@ THREE.DragControls = function ( _objects, _camera, _domElement ) {
 		_domElement.addEventListener( 'touchmove', onDocumentTouchMove, false );
 		_domElement.addEventListener( 'touchstart', onDocumentTouchStart, false );
 		_domElement.addEventListener( 'touchend', onDocumentTouchEnd, false );
+		_domElement.addEventListener( 'dblclick', onDocumentdblclick, false );
 
 	}
 
@@ -47,6 +48,7 @@ THREE.DragControls = function ( _objects, _camera, _domElement ) {
 		_domElement.removeEventListener( 'touchmove', onDocumentTouchMove, false );
 		_domElement.removeEventListener( 'touchstart', onDocumentTouchStart, false );
 		_domElement.removeEventListener( 'touchend', onDocumentTouchEnd, false );
+		_domElement.removeEventListener( 'dblclick', onDocumentdblclick, false );
 
 	}
 
@@ -356,6 +358,22 @@ THREE.DragControls = function ( _objects, _camera, _domElement ) {
 
 		_domElement.style.cursor = 'auto';
 
+	}
+	
+	function onDocumentdblclick(event){
+		event.preventDefault();
+
+		_raycaster.setFromCamera( _mouse, _camera );
+
+		var intersects = _raycaster.intersectObjects( _objects );
+
+		if ( intersects.length > 0 ) {
+
+			_selected = intersects[ 0 ].object;
+
+			console.log("더블더릅ㄹ", _selected);
+			_selected.rotateY(THREE.Math.degToRad(90));
+		}	
 	}
 
 	activate();
