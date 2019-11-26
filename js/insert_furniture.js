@@ -22,6 +22,7 @@ window.onload = function () {
 		console.log(wh);
 		mouse.x = Math.round((e.clientX - 460) / wh);
 		mouse.y = Math.round((e.clientY - 300) / wh);
+		mouse.z = 0;
 		console.log(e.clientX, e.clientY);
 		console.log(mouse.x, mouse.y);
 
