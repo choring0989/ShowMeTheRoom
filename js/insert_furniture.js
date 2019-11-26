@@ -177,23 +177,12 @@ window.onload = function () {
 		document.getElementById("mode").innerText = '현재 모드: 가구 삽입'
 	});
 
-	/** *************Change View Space Mode********************** */
+	/** *************Change View Space Mode********************** */	
 	var ViewButton = document.getElementById("view");
 	ViewButton.addEventListener("click", function(event) {
 		cl=0;
 		document.getElementById("mode").innerText = '현재 모드: view'
 	});
-
-  /** *************Drag Furniture Mode********************** */
-  var InsertButton = document.getElementById("insert");
-    InsertButton.addEventListener("click", function(event) {
-    camera.position.x = 0;
-    camera.position.y = 6;
-    camera.position.z = 0;
-    cl=2;
-    document.getElementById("mode").innerText = '현재 모드: 가구 이동'
-  });
-
 
 	/** DirectionalLight를 추가하는 함수 */
 	function addDirectionalLight() {
@@ -325,8 +314,8 @@ window.onload = function () {
 		controls.panSpeed = 0.8;
 		controls.minDistance = -50;
 		controls.maxDistance = 10;
-
-		var object_controls = new THREE.DragControls( objarr, camera, renderer.domElement );
+		
+		object_controls = new THREE.DragControls( objarr, camera, renderer.domElement );
 		object_controls.addEventListener( 'dragstart', dragStartCallback );
 		object_controls.addEventListener( 'dragend', dragendCallback );
 
@@ -338,6 +327,7 @@ window.onload = function () {
 
 		function dragendCallback(event) {
 			controls.enabled = true;
+			furniture_path = "";
 			//event.object.material.color.setHex(startColor);
 		}
 
@@ -348,8 +338,9 @@ window.onload = function () {
 				camera.position.x = 0;
 				camera.position.y = 6;
 				camera.position.z = 0;
+				object_controls.enabled = true;
 			}
-			else {}
+			else {object_controls.enabled = false;}
 			renderer.render(scene, camera);
 			controls.update();
 		}
