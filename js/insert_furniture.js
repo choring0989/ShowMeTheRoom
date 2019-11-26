@@ -10,6 +10,7 @@ window.onload = function () {
    let cl, roomsize;
    let objarr = new Array();
    let mtlLoader; // MTLLoader 객체를 넣을 변수
+   room_floor = './furniture/floorFull.obj'
 
    // testing~ start
    // mouse click event function
@@ -24,7 +25,7 @@ window.onload = function () {
 		console.log(e.clientX, e.clientY);
 		console.log(mouse.x, mouse.y);
 
-		loadMTLLoader(mouse, furniture_path);
+		loadMTLLoader(mouse, furniture_path, 3);
 	}
 
 }
@@ -93,18 +94,12 @@ window.onload = function () {
    });
 
    /*
-   // click event for inserting furniture
-    window.addEventListener("click", function(event){
-      if(cl==1&&event.clientY>50){
-        // check log
-      console.log('clcik event listener');
-      console.log(event.clientX, event.clientY);
-      // load OBJ file
-      loadObjLoader(position, './furniture/bathroomCabinet.obj');
-      // console.log(loader.position);
-        }
-    } );
-*/
+	 * // click event for inserting furniture window.addEventListener("click",
+	 * function(event){ if(cl==1&&event.clientY>50){ // check log
+	 * console.log('clcik event listener'); console.log(event.clientX,
+	 * event.clientY); // load OBJ file loadObjLoader(position,
+	 * './furniture/bathroomCabinet.obj'); // console.log(loader.position); } } );
+	 */
    /** DirectionalLight를 추가하는 함수 */
    function addDirectionalLight() {
       light = new THREE.DirectionalLight(0xffffff, 1);
@@ -121,6 +116,7 @@ window.onload = function () {
 	  // size 고정
       var size = 8;
       var size = 8;
+      
       grid = new THREE.Object3D();
       gridH = new THREE.GridHelper(size, roomsize, 0x0000ff, 0x808080);
       gridH.position.y = 0;
@@ -128,20 +124,26 @@ window.onload = function () {
       gridH.position.z = 0;
       grid.add(gridH);
       scene.add(grid);
+      
+      // 장판깔기
+      mouse.x = 4;
+      mouse.y = -4;
+      mouse.z = -0.41;
+      loadMTLLoader(mouse, room_floor, 8);
    }
 
    /** .obj 파일의 모델을 로드하는 함수 */
-   function loadObjLoader(position, obj, materials) {
+   function loadObjLoader(position, obj, materials, size) {
       loader = new THREE.OBJLoader();
       loader.load(obj, function (object) {
          // set position of object
          object.position.set(position.x, 0, position.y);
-		     object.scale.x = object.scale.y = object.scale.z = 3;
-         //object.position.set(1, 0, 1);
+		 object.scale.x = object.scale.y = object.scale.z = size;
+         // object.position.set(1, 0, 1);
          // add object
-		 //loader.setMaterials(materials);
-		 //objarr.push(object);
-         //scene.add(object);
+		 // loader.setMaterials(materials);
+		 // objarr.push(object);
+         // scene.add(object);
       }, function (xhr) {
          // loading model
          console.log(xhr.loaded / xhr.total * 100, '% loaded');
@@ -152,7 +154,7 @@ window.onload = function () {
    }
 
    /** 텍스쳐 입히는 함수 */
-   function loadMTLLoader(position, obj) {
+   function loadMTLLoader(position, obj, size) {
        mtlLoader = new THREE.MTLLoader();
        var name = "."+obj.split(".")[1]+".mtl";
        console.log("mtl name="+name);
@@ -162,14 +164,16 @@ window.onload = function () {
        mtlLoader.load(name, function (materials) {
            // 로드 완료되었을때 호출하는 함수
            materials.preload();
-           loadObjLoader(position, obj, materials);
+           //loadObjLoader(position, obj, materials, size);
 
             var obj_loader = new THREE.OBJLoader();
             obj_loader.setMaterials(materials)
             obj_loader.load(obj,
             function(object) {
                 let mesh = object.children[0]
-                mesh.scale.x = mesh.scale.y = mesh.scale.z = 3;
+                if (position.z == null) position.x = 0;
+                mesh.position.set(position.x, position.z, position.y);
+                mesh.scale.x = mesh.scale.y = mesh.scale.z = size;
                 scene.add(mesh);
                 objarr.push(mesh);
             },
@@ -178,12 +182,12 @@ window.onload = function () {
        , function (error) {
            // 로드가 실패했을때 호출하는 함수
            console.error('MTLLoader 로드 중 오류가 발생하였습니다.', error);
-           //alert('MTLLoader 로드 중 오류가 발생하였습니다.');//빡쳐서 주석함
+           // alert('MTLLoader 로드 중 오류가 발생하였습니다.');//빡쳐서 주석함
        }
      );
    }
 
-   //furnitre 이름 목록 불러오
+   // furnitre 이름 목록 불러오
    function getFilename(){
       var testFolder = './furniture';
       var fs = require('fs');
@@ -202,18 +206,18 @@ window.onload = function () {
       camera.position.y = 6;
       camera.position.z = 0;
 
-      //testing~ start
+      // testing~ start
       rayCast = new THREE.Raycaster();
       mouse = new THREE.Vector2();
       mouse.x = mouse.y = -1;
 
-      //testing~ end
+      // testing~ end
 
       let renderer = new THREE.WebGLRenderer({
          antialias: true
       });
       container = document.getElementById('main');
-      //renderer.setSize(window.innerWidth, window.innerHeight);
+      // renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setSize(1100, 550);
       renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -222,8 +226,8 @@ window.onload = function () {
 
       // x,y,z lines
       /*
-       * let axes = new THREE.AxesHelper(5); scene.add(axes);
-       */
+		 * let axes = new THREE.AxesHelper(5); scene.add(axes);
+		 */
 
       controls = new THREE.OrbitControls(camera, renderer.domElement);
       controls.rotateSpeed = 1.0;
@@ -254,7 +258,7 @@ window.onload = function () {
 // MTLloader.js
 /**
  * Loads a Wavefront .mtl file specifying materials
- *
+ * 
  * @author angelxuanchang
  */
 
@@ -269,18 +273,22 @@ THREE.MTLLoader.prototype = Object.assign( Object.create( THREE.Loader.prototype
    constructor: THREE.MTLLoader,
 
    /**
-    * Loads and parses a MTL asset from a URL.
-    *
-    * @param {String} url - URL to the MTL file.
-    * @param {Function} [onLoad] - Callback invoked with the loaded object.
-    * @param {Function} [onProgress] - Callback for download progress.
-    * @param {Function} [onError] - Callback for download errors.
-    *
-    * @see setPath setResourcePath
-    *
-    * @note In order for relative texture references to resolve correctly
-    * you must call setResourcePath() explicitly prior to load.
-    */
+	 * Loads and parses a MTL asset from a URL.
+	 * 
+	 * @param {String}
+	 *            url - URL to the MTL file.
+	 * @param {Function}
+	 *            [onLoad] - Callback invoked with the loaded object.
+	 * @param {Function}
+	 *            [onProgress] - Callback for download progress.
+	 * @param {Function}
+	 *            [onError] - Callback for download errors.
+	 * 
+	 * @see setPath setResourcePath
+	 * 
+	 * @note In order for relative texture references to resolve correctly you
+	 *       must call setResourcePath() explicitly prior to load.
+	 */
    load: function ( url, onLoad, onProgress, onError ) {
 
       var scope = this;
@@ -305,16 +313,17 @@ THREE.MTLLoader.prototype = Object.assign( Object.create( THREE.Loader.prototype
    },
 
    /**
-    * Parses a MTL file.
-    *
-    * @param {String} text - Content of MTL file
-    * @return {THREE.MTLLoader.MaterialCreator}
-    *
-    * @see setPath setResourcePath
-    *
-    * @note In order for relative texture references to resolve correctly
-    * you must call setResourcePath() explicitly prior to parse.
-    */
+	 * Parses a MTL file.
+	 * 
+	 * @param {String}
+	 *            text - Content of MTL file
+	 * @return {THREE.MTLLoader.MaterialCreator}
+	 * 
+	 * @see setPath setResourcePath
+	 * 
+	 * @note In order for relative texture references to resolve correctly you
+	 *       must call setResourcePath() explicitly prior to parse.
+	 */
    parse: function ( text, path ) {
 
       var lines = text.split( '\n' );
@@ -378,16 +387,18 @@ THREE.MTLLoader.prototype = Object.assign( Object.create( THREE.Loader.prototype
 
 /**
  * Create a new THREE-MTLLoader.MaterialCreator
- * @param baseUrl - Url relative to which textures are loaded
- * @param options - Set of options on how to construct the materials
- *                  side: Which side to apply the material
- *                        THREE.FrontSide (default), THREE.BackSide, THREE.DoubleSide
- *                  wrap: What type of wrapping to apply for textures
- *                        THREE.RepeatWrapping (default), THREE.ClampToEdgeWrapping, THREE.MirroredRepeatWrapping
- *                  normalizeRGB: RGBs need to be normalized to 0-1 from 0-255
- *                                Default: false, assumed to be already normalized
- *                  ignoreZeroRGBs: Ignore values of RGBs (Ka,Kd,Ks) that are all 0's
- *                                  Default: false
+ * 
+ * @param baseUrl -
+ *            Url relative to which textures are loaded
+ * @param options -
+ *            Set of options on how to construct the materials side: Which side
+ *            to apply the material THREE.FrontSide (default), THREE.BackSide,
+ *            THREE.DoubleSide wrap: What type of wrapping to apply for textures
+ *            THREE.RepeatWrapping (default), THREE.ClampToEdgeWrapping,
+ *            THREE.MirroredRepeatWrapping normalizeRGB: RGBs need to be
+ *            normalized to 0-1 from 0-255 Default: false, assumed to be already
+ *            normalized ignoreZeroRGBs: Ignore values of RGBs (Ka,Kd,Ks) that
+ *            are all 0's Default: false
  * @constructor
  */
 
@@ -574,7 +585,8 @@ THREE.MTLLoader.MaterialCreator.prototype = {
 
       function setMapForType( mapType, value ) {
 
-         if ( params[ mapType ] ) return; // Keep the first encountered texture
+         if ( params[ mapType ] ) return; // Keep the first encountered
+											// texture
 
          var texParams = scope.getTextureParams( value, params );
          var map = scope.loadTexture( resolveURL( scope.baseUrl, texParams.url ) );
@@ -610,7 +622,8 @@ THREE.MTLLoader.MaterialCreator.prototype = {
 
             case 'ks':
 
-               // Specular color (color when light is reflected from shiny surface) using RGB values
+               // Specular color (color when light is reflected from shiny
+				// surface) using RGB values
                params.specular = new THREE.Color().fromArray( value );
 
                break;
@@ -672,8 +685,10 @@ THREE.MTLLoader.MaterialCreator.prototype = {
 
             case 'ns':
 
-               // The specular exponent (defines the focus of the specular highlight)
-               // A high exponent results in a tight, concentrated highlight. Ns values normally range from 0 to 1000.
+               // The specular exponent (defines the focus of the specular
+				// highlight)
+               // A high exponent results in a tight, concentrated highlight.
+				// Ns values normally range from 0 to 1000.
 
                params.shininess = parseFloat( value );
 
