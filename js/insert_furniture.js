@@ -7,7 +7,8 @@ window.onload = function () {
    let light, gird, gridH, camera;
    let mouse;
    let loader; // OBJLoader 객체를 넣을 변수를 선언
-   let cl, roomsize;
+   let cl, roomsize; 
+   let furniture_size = 3.35;
    let objarr = new Array();
    let mtlLoader; // MTLLoader 객체를 넣을 변수
    room_floor = './furniture/floorFull.obj'
@@ -26,7 +27,7 @@ window.onload = function () {
 		console.log(e.clientX, e.clientY);
 		console.log(mouse.x, mouse.y);
 
-		loadMTLLoader(mouse, furniture_path, 3);
+		loadMTLLoader(mouse, furniture_path, furniture_size);
 	}
 
 }
@@ -41,6 +42,7 @@ window.onload = function () {
 
 	btn_plus.addEventListener("click", function(event) {
 		if (Number(inner) < 20) {
+			furniture_size = furniture_size*0.8;
 			document.getElementById("roomsize").innerText = Number(inner)+2;
 			roomsize = document.getElementById("roomsize").innerText;
 			scene.remove(grid);
@@ -56,6 +58,7 @@ window.onload = function () {
 
 	btn_minus.addEventListener("click", function(event) {
 		if (Number(inner) > 6) {
+			furniture_size = furniture_size*1.2;
 			document.getElementById("roomsize").innerText = Number(inner)-2;
 			roomsize = document.getElementById("roomsize").innerText;
 			scene.remove(grid);
