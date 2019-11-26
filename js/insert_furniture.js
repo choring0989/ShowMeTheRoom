@@ -161,7 +161,7 @@ window.onload = function () {
 		console.log("furniture path ="+'./furniture/washer.obj')
 	});
 	/** [End] furniture button listener */
-	
+
 	initThree();
 	addDirectionalLight();
 	addGridView();
@@ -183,6 +183,17 @@ window.onload = function () {
 		cl=0;
 		document.getElementById("mode").innerText = '현재 모드: view'
 	});
+
+  /** *************Drag Furniture Mode********************** */
+  var InsertButton = document.getElementById("insert");
+    InsertButton.addEventListener("click", function(event) {
+    camera.position.x = 0;
+    camera.position.y = 6;
+    camera.position.z = 0;
+    cl=2;
+    document.getElementById("mode").innerText = '현재 모드: 가구 이동'
+  });
+
 
 	/** DirectionalLight를 추가하는 함수 */
 	function addDirectionalLight() {
