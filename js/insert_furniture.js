@@ -31,10 +31,12 @@ window.onload = function () {
 				if(e.clientX < 796){
 				mouse.x = (e.clientX - 680) / wh-1.2;
 				mouse.y = (e.clientY - 300) / wh-0.9;
+				mouse.z = 0;
 				}
 				else{
 				mouse.x = (e.clientX - 680) / wh-0.3;
 				mouse.y = (e.clientY - 300) / wh-0.9;
+				mouse.z = 0;
 				}
 
 			}
@@ -42,10 +44,12 @@ window.onload = function () {
 			if(e.clientX < 796){
 				mouse.x = (e.clientX - 680) / wh-1.2;
 				mouse.y = (e.clientY - 300) / wh-0.1;
+				mouse.z = 0;
 				}
 				else{
 				mouse.x = (e.clientX - 680) / wh-0.3;
 				mouse.y = (e.clientY - 300) / wh-0.1;
+				mouse.z = 0;
 				}
 			}
 			if(mouse.x >= (roomsize/2) || mouse.y >= (roomsize/2) || mouse.x <= -(roomsize/2) || mouse.y <= -(roomsize/2)) {
