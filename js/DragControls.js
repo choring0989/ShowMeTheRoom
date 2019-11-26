@@ -62,8 +62,48 @@ THREE.DragControls = function ( _objects, _camera, _domElement ) {
 
 		var rect = _domElement.getBoundingClientRect();
 
-		_mouse.x = ( ( event.clientX - rect.left ) / rect.width ) * 2 - 1;
-		_mouse.y = - ( ( event.clientY - rect.top ) / rect.height ) * 2 + 1;
+		if(event.clientX < 600){	
+		if(event.clientY < 100){
+			_mouse.x = ( ( 600 - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( 100 - rect.top ) / rect.height ) * 2 + 1;
+			}
+			else if(event.clientY>500){
+			_mouse.x = ( ( 600 - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( 500 - rect.top ) / rect.height ) * 2 + 1;
+			}
+			else{
+			_mouse.x = ( ( 600 - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( event.clientY - rect.top ) / rect.height ) * 2 + 1;
+			}
+		}
+		else if(event.clientX > 980){	
+		if(event.clientY < 100){
+			_mouse.x = ( ( 980 - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( 100 - rect.top ) / rect.height ) * 2 + 1;
+			}
+			else if(event.clientY>500){
+			_mouse.x = ( ( 980 - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( 500 - rect.top ) / rect.height ) * 2 + 1;
+			}
+			else{
+			_mouse.x = ( ( 980 - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( event.clientY - rect.top ) / rect.height ) * 2 + 1;
+			}
+		}
+		else{
+			if(event.clientY < 100){
+			_mouse.x = ( ( event.clientX - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( 100 - rect.top ) / rect.height ) * 2 + 1;
+			}
+			else if(event.clientY>500){
+			_mouse.x = ( ( event.clientX - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( 500 - rect.top ) / rect.height ) * 2 + 1;
+			}
+			else{
+			_mouse.x = ( ( event.clientX - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( event.clientY - rect.top ) / rect.height ) * 2 + 1;
+			}
+		}
 
 		_raycaster.setFromCamera( _mouse, _camera );
 
@@ -163,10 +203,50 @@ THREE.DragControls = function ( _objects, _camera, _domElement ) {
 		event.preventDefault();
 		event = event.changedTouches[ 0 ];
 
-		var rect = _domElement.getBoundingClientRect();
-
-		_mouse.x = ( ( event.clientX - rect.left ) / rect.width ) * 2 - 1;
-		_mouse.y = - ( ( event.clientY - rect.top ) / rect.height ) * 2 + 1;
+		var rect = _domElement.getBoundingClientRect();	
+		
+		if(event.clientX < 600){
+		if(event.clientY < 100){
+			_mouse.x = ( ( 600 - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( 100 - rect.top ) / rect.height ) * 2 + 1;
+			}
+			else if(event.clientY>500){
+			_mouse.x = ( ( 600 - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( 500 - rect.top ) / rect.height ) * 2 + 1;
+			}
+			else{
+			_mouse.x = ( ( 600 - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( event.clientY - rect.top ) / rect.height ) * 2 + 1;
+			}
+		}
+		else if(event.clientX > 980){
+			if(event.clientY < 100){
+			_mouse.x = ( ( 980 - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( 100 - rect.top ) / rect.height ) * 2 + 1;
+			}
+			else if(event.clientY>500){
+			_mouse.x = ( ( 980 - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( 500 - rect.top ) / rect.height ) * 2 + 1;
+			}
+			else{
+			_mouse.x = ( ( 980 - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( event.clientY - rect.top ) / rect.height ) * 2 + 1;
+			}
+		}
+		else{
+			if(event.clientY < 100){
+			_mouse.x = ( ( event.clientX - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( 100 - rect.top ) / rect.height ) * 2 + 1;
+			}
+			else if(event.clientY>500){
+			_mouse.x = ( ( event.clientX - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( 500 - rect.top ) / rect.height ) * 2 + 1;
+			}
+			else{
+			_mouse.x = ( (event.clientX - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( event.clientY - rect.top ) / rect.height ) * 2 + 1;
+			}
+		}
 
 		_raycaster.setFromCamera( _mouse, _camera );
 
@@ -192,9 +272,50 @@ THREE.DragControls = function ( _objects, _camera, _domElement ) {
 		event = event.changedTouches[ 0 ];
 
 		var rect = _domElement.getBoundingClientRect();
+			
+		
+		if(event.clientX < 600){
+			if(event.clientY < 100){
+			_mouse.x = ( ( 600 - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( 100 - rect.top ) / rect.height ) * 2 + 1;
+			}
+			else if(event.clientY>500){
+			_mouse.x = ( ( 600 - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( 500 - rect.top ) / rect.height ) * 2 + 1;
+			}
+			else{
+			_mouse.x = ( ( 600 - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( event.clientY - rect.top ) / rect.height ) * 2 + 1;
+			}
+		}
+		else if(event.clientX > 980){	if(event.clientY < 100){
+			_mouse.x = ( ( 980 - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( 100 - rect.top ) / rect.height ) * 2 + 1;
+			}
+			else if(event.clientY>500){
+			_mouse.x = ( ( 980 - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( 500 - rect.top ) / rect.height ) * 2 + 1;
+			}
+			else{
+			_mouse.x = ( ( 980 - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( event.clientY - rect.top ) / rect.height ) * 2 + 1;
+			}
+		}
+		else{	
+			if(event.clientY < 100){
+			_mouse.x = ( ( event.clientX - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( 100 - rect.top ) / rect.height ) * 2 + 1;
+			}
+			else if(event.clientY>500){
+			_mouse.x = ( ( event.clientX - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( 500 - rect.top ) / rect.height ) * 2 + 1;
+			}
+			else{
+			_mouse.x = ( ( event.clientX - rect.left ) / rect.width ) * 2 - 1;
+			_mouse.y = - ( ( event.clientY - rect.top ) / rect.height ) * 2 + 1;
+			}
+		}
 
-		_mouse.x = ( ( event.clientX - rect.left ) / rect.width ) * 2 - 1;
-		_mouse.y = - ( ( event.clientY - rect.top ) / rect.height ) * 2 + 1;
 
 		_raycaster.setFromCamera( _mouse, _camera );
 
