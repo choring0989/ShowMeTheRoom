@@ -5,6 +5,13 @@ window.onload = function () {
 	// variables
 	furniture_path = ''
 	let scene = new THREE.Scene();
+	
+	scene.background = new THREE.Color( 0x000000 );
+	
+	var hemiLight = new THREE.HemisphereLight( 0xcccccc, 0x1B1B1B );
+	hemiLight.position.set( 0, 0, 0 );
+	scene.add(hemiLight);
+	
 	let light, gird, gridH, camera;
 	let mouse;
 	let loader; // OBJLoader 객체를 넣을 변수를 선언
