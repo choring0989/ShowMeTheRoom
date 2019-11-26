@@ -13,10 +13,6 @@ window.onload = function () {
 	let objarr = new Array();
 	let mtlLoader; // MTLLoader 객체를 넣을 변수
 	room_floor = './furniture/floorFull.obj'
-	
-	initThree();
-	addDirectionalLight();
-	addGridView();
 
 	/** mouse click event function for inserting furniture */
 	let onMouseClick = function(e){
@@ -73,6 +69,11 @@ window.onload = function () {
 			inner = document.getElementById("roomsize").innerText;
 		}
 	});
+	
+	initThree();
+	initThree();
+	addDirectionalLight();
+	addGridView();
 
 	/** [Start] furniture button listener */
 	var benchCushion = document.getElementById("benchCushion");
