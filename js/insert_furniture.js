@@ -297,6 +297,7 @@ window.onload = function () {
 		container = document.getElementById('main');
 		// renderer.setSize(window.innerWidth, window.innerHeight);
 		renderer.setSize(1100, 550);
+		document.body.appendChild( renderer.domElement );
 		renderer.shadowMap.enabled = true;
 		renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 		container.appendChild(renderer.domElement);
@@ -318,16 +319,16 @@ window.onload = function () {
 		object_controls.addEventListener( 'dragstart', dragStartCallback );
 		object_controls.addEventListener( 'dragend', dragendCallback );
 
-		// drag and drop test
 		function dragStartCallback(event) {
+			controls.enabled = false;
 			startColor = event.object.material.color.getHex();
 			event.object.material.color.setHex(0x000000);
 		}
 
 		function dragendCallback(event) {
+			controls.enabled = true;
 			event.object.material.color.setHex(startColor);
 		}
-		// drag and drop test
 
 		function animate() {
 			requestAnimationFrame(animate);
