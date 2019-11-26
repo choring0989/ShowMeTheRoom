@@ -196,11 +196,11 @@ window.onload = function () {
 	 */
    /** DirectionalLight를 추가하는 함수 */
    function addDirectionalLight() {
-      light = new THREE.DirectionalLight(0xffffff, 1);
-      light.castShadow = true;
-      light.position.x = 5;
-      light.position.y = 5;
-      light.position.z = 5;
+      light = new THREE.DirectionalLight(0xffffff, 1.5);
+      light.castShadow = false;
+      light.position.x = -10;
+      light.position.y = 15;
+      light.position.z = -20;
       scene.add(light);
    }
 
