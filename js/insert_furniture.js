@@ -20,7 +20,7 @@ window.onload = function () {
 		var wh = 360/(roomsize/2);
 		console.log('wh=');
 		console.log(wh);
-		mouse.x = Math.round((e.clientX - 460) / wh);
+		mouse.x = Math.round((e.clientX - 680) / wh);
 		mouse.y = Math.round((e.clientY - 300) / wh);
 		mouse.z = 0;
 		console.log(e.clientX, e.clientY);
@@ -37,7 +37,7 @@ window.onload = function () {
 	var btn_plus = document.getElementById("plus");
 	var btn_minus = document.getElementById("minus");
 	var inner = document.getElementById("roomsize").innerText;
-  var btn_bathroomMirror = document.getElementById("bathroomMirror");
+	var btn_bathroomMirror = document.getElementById("bathroomMirror");
 
 	btn_plus.addEventListener("click", function(event) {
 		if (Number(inner) < 20) {
@@ -86,12 +86,14 @@ window.onload = function () {
 		camera.position.y = 6;
 		camera.position.z = 0;
 		cl=1;
+		document.getElementById("mode").innerText = '현재 모드: 가구 삽입'
 	});
 
    /** *************Change View Space Mode********************** */
     var ViewButton = document.getElementById("view");
     ViewButton.addEventListener("click", function(event) {
         cl=0;
+        document.getElementById("mode").innerText = '현재 모드: view'
    });
 
    /*
@@ -116,7 +118,6 @@ window.onload = function () {
       // add grid
 	  // size 고정
       var size = 8;
-      var size = 8;
       
       grid = new THREE.Object3D();
       gridH = new THREE.GridHelper(size, roomsize, 0x0000ff, 0x808080);
@@ -133,7 +134,7 @@ window.onload = function () {
       loadMTLLoader(mouse, room_floor, 8);
    }
 
-   /** .obj 파일의 모델을 로드하는 함수 */
+   /** .obj 파일의 모델을 로드하는 함수
    function loadObjLoader(position, obj, materials, size) {
       loader = new THREE.OBJLoader();
       loader.load(obj, function (object) {
@@ -152,7 +153,8 @@ window.onload = function () {
          // fail to load model
          alert('모델을 로드 중 오류가 발생하였습니다.');
       });
-   }
+      }
+      */
 
    /** 텍스쳐 입히는 함수 */
    function loadMTLLoader(position, obj, size) {
@@ -172,7 +174,7 @@ window.onload = function () {
             obj_loader.load(obj,
             function(object) {
                 let mesh = object.children[0]
-                if (position.z == null) position.x = 0;
+                if (position.z == null) position.z = 0;
                 mesh.position.set(position.x, position.z, position.y);
                 mesh.scale.x = mesh.scale.y = mesh.scale.z = size;
                 scene.add(mesh);
