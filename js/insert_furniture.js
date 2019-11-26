@@ -71,6 +71,8 @@ window.onload = function () {
 		}
 	});
 
+// [Start] furniture button listener
+
   var benchCushion = document.getElementById("benchCushion");
     benchCushion.addEventListener("click", function(event){
     furniture_path = './furniture/benchCushion.obj';
@@ -161,6 +163,7 @@ window.onload = function () {
     console.log("furniture path ="+'./furniture/washer.obj')
   });
 
+// [End] furniture button listener
 
    initThree();
    addDirectionalLight();
