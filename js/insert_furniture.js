@@ -27,7 +27,7 @@ window.onload = function () {
 		console.log(e.clientX, e.clientY);
 		console.log(mouse.x, mouse.y);
 
-		loadMTLLoader(mouse, furniture_path, furniture_size);
+		loadMTLLoader(mouse, furniture_path, furniture_size, 1);
 	}
 
 }
@@ -222,7 +222,7 @@ window.onload = function () {
       mouse.x = 4;
       mouse.y = -4;
       mouse.z = -0.41;
-      loadMTLLoader(mouse, room_floor, 8);
+      loadMTLLoader(mouse, room_floor, 8, 0);
    }
 
    /** .obj 파일의 모델을 로드하는 함수
@@ -248,7 +248,7 @@ window.onload = function () {
       */
 
    /** 텍스쳐 입히는 함수 */
-   function loadMTLLoader(position, obj, size) {
+   function loadMTLLoader(position, obj, size, flag) {
        mtlLoader = new THREE.MTLLoader();
        var name = "."+obj.split(".")[1]+".mtl";
        console.log("mtl name="+name);
@@ -269,7 +269,9 @@ window.onload = function () {
                 mesh.position.set(position.x, position.z, position.y);
                 mesh.scale.x = mesh.scale.y = mesh.scale.z = size;
                 scene.add(mesh);
-                objarr.push(mesh);
+                if(flag == 1){
+	                objarr.push(mesh);
+                }
             },
         )
        }// [End] 수정된 부분
