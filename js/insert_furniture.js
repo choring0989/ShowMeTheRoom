@@ -25,11 +25,11 @@ window.onload = function () {
 				mouse.x = (e.clientX - 680) / wh-1.2;
 				mouse.y = (e.clientY - 300) / wh-0.9;
 				}
-				else{				
+				else{
 				mouse.x = (e.clientX - 680) / wh-0.3;
 				mouse.y = (e.clientY - 300) / wh-0.9;
 				}
-			
+
 			}
 			else{
 			if(e.clientX < 796){
@@ -175,6 +175,61 @@ window.onload = function () {
 		furniture_path = './furniture/washer.obj';
 		console.log("furniture path ="+'./furniture/washer.obj')
 	});
+
+  var sideTable = document.getElementById("sideTable");
+  sideTable.addEventListener("click", function(event){
+    furniture_path = './furniture/sideTable.obj';
+    console.log("furniture path ="+'./furniture/sideTable.obj')
+  });
+
+  var loungeSofaOttoman = document.getElementById("loungeSofaOttoman");
+  loungeSofaOttoman.addEventListener("click", function(event){
+    furniture_path = './furniture/loungeSofaOttoman.obj';
+    console.log("furniture path ="+'./furniture/loungeSofaOttoman.obj')
+  });
+
+  var pottedPlant = document.getElementById("pottedPlant");
+  pottedPlant.addEventListener("click", function(event){
+    furniture_path = './furniture/pottedPlant.obj';
+    console.log("furniture path ="+'./furniture/pottedPlant.obj')
+  });
+
+  var rugRound = document.getElementById("rugRound");
+  rugRound.addEventListener("click", function(event){
+    furniture_path = './furniture/rugRound.obj';
+    console.log("furniture path ="+'./furniture/rugRound.obj')
+  });
+
+  var tableGlass = document.getElementById("tableGlass");
+  tableGlass.addEventListener("click", function(event){
+    furniture_path = './furniture/tableGlass.obj';
+    console.log("furniture path ="+'./furniture/tableGlass.obj')
+  });
+
+  var toilet = document.getElementById("toilet");
+  toilet.addEventListener("click", function(event){
+    furniture_path = './furniture/toilet.obj';
+    console.log("furniture path ="+'./furniture/toilet.obj')
+  });
+
+  var washerDryerStacked = document.getElementById("washerDryerStacked");
+  washerDryerStacked.addEventListener("click", function(event){
+    furniture_path = './furniture/washerDryerStacked.obj';
+    console.log("furniture path ="+'./furniture/washerDryerStacked.obj')
+  });
+
+  var speaker = document.getElementById("speaker");
+  speaker.addEventListener("click", function(event){
+    furniture_path = './furniture/speaker.obj';
+    console.log("furniture path ="+'./furniture/speaker.obj')
+  });
+
+  var kitchenStove = document.getElementById("kitchenStove");
+  kitchenStove.addEventListener("click", function(event){
+    furniture_path = './furniture/kitchenStove.obj';
+    console.log("furniture path ="+'./furniture/kitchenStove.obj')
+  });
+
 	/** [End] furniture button listener */
 
 	initThree();
@@ -192,7 +247,7 @@ window.onload = function () {
 		document.getElementById("mode").innerText = '현재 모드: 가구 삽입'
 	});
 
-	/** *************Change View Space Mode********************** */	
+	/** *************Change View Space Mode********************** */
 	var ViewButton = document.getElementById("view");
 	ViewButton.addEventListener("click", function(event) {
 		cl=0;
@@ -329,11 +384,11 @@ window.onload = function () {
 		controls.panSpeed = 0.8;
 		controls.minDistance = -50;
 		controls.maxDistance = 10;
-		
+
 		object_controls = new THREE.DragControls( objarr, camera, renderer.domElement );
 		object_controls.addEventListener( 'dragstart', dragStartCallback );
 		object_controls.addEventListener( 'dragend', dragendCallback );
-		
+
 
 		function dragStartCallback(event) {
 			controls.enabled = false;
