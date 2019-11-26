@@ -7,7 +7,7 @@ window.onload = function () {
    let light, gird, gridH, camera;
    let mouse;
    let loader; // OBJLoader 객체를 넣을 변수를 선언
-   let cl, roomsize; 
+   let cl, roomsize;
    let furniture_size = 3.35;//
    let objarr = new Array();
    let mtlLoader; // MTLLoader 객체를 넣을 변수
@@ -38,7 +38,6 @@ window.onload = function () {
 	var btn_plus = document.getElementById("plus");
 	var btn_minus = document.getElementById("minus");
 	var inner = document.getElementById("roomsize").innerText;
-	var btn_bathroomMirror = document.getElementById("bathroomMirror");
 
 	btn_plus.addEventListener("click", function(event) {
 		if (Number(inner) < 20) {
@@ -72,10 +71,96 @@ window.onload = function () {
 		}
 	});
 
-  btn_bathroomMirror.addEventListener("click", function(event){
-    furniture_path = './furniture/bathroomMirror.obj';
-    console.log("furniture path ="+'./furniture/bathroomCabinet.obj')
+  var benchCushion = document.getElementById("benchCushion");
+    benchCushion.addEventListener("click", function(event){
+    furniture_path = './furniture/benchCushion.obj';
+    console.log("furniture path ="+'./furniture/benchCushion.obj')
   });
+
+  var bedBunk = document.getElementById("bedBunk");
+    bedBunk.addEventListener("click", function(event){
+    furniture_path = './furniture/bedBunk.obj';
+    console.log("furniture path ="+'./furniture/bedBunk.obj')
+  });
+
+  var bookcaseClosedWide = document.getElementById("bookcaseClosedWide");
+    bookcaseClosedWide.addEventListener("click", function(event){
+    furniture_path = './furniture/bookcaseClosedWide.obj';
+    console.log("furniture path ="+'./furniture/bookcaseClosedWide.obj')
+  });
+
+  var cardboardBoxOpen = document.getElementById("cardboardBoxOpen");
+    cardboardBoxOpen.addEventListener("click", function(event){
+    furniture_path = './furniture/cardboardBoxOpen.obj';
+    console.log("furniture path ="+'./furniture/cardboardBoxOpen.obj')
+  });
+
+  var cabinetTelevision = document.getElementById("cabinetTelevision");
+    cabinetTelevision.addEventListener("click", function(event){
+    furniture_path = './furniture/cabinetTelevision.obj';
+    console.log("furniture path ="+'./furniture/cabinetTelevision.obj')
+  });
+
+  var chairModernCushion = document.getElementById("chairModernCushion");
+    chairModernCushion.addEventListener("click", function(event){
+    furniture_path = './furniture/chairModernCushion.obj';
+    console.log("furniture path ="+'./furniture/chairModernCushion.obj')
+  });
+
+  var dryer = document.getElementById("dryer");
+    dryer.addEventListener("click", function(event){
+    furniture_path = './furniture/dryer.obj';
+    console.log("furniture path ="+'./furniture/dryer.obj')
+  });
+
+  var kitchenBar = document.getElementById("kitchenBar");
+    kitchenBar.addEventListener("click", function(event){
+    furniture_path = './furniture/kitchenBar.obj';
+    console.log("furniture path ="+'./furniture/kitchenBar.obj')
+  });
+
+  var kitchenFridge = document.getElementById("kitchenFridge");
+    kitchenFridge.addEventListener("click", function(event){
+    furniture_path = './furniture/kitchenFridge.obj';
+    console.log("furniture path ="+'./furniture/kitchenFridge.obj')
+  });
+
+  var kitchenSink = document.getElementById("kitchenSink");
+    kitchenSink.addEventListener("click", function(event){
+    furniture_path = './furniture/kitchenSink.obj';
+    console.log("furniture path ="+'./furniture/kitchenSink.obj')
+  });
+
+  var lampRoundFloor = document.getElementById("lampRoundFloor");
+    lampRoundFloor.addEventListener("click", function(event){
+    furniture_path = './furniture/lampRoundFloor.obj';
+    console.log("furniture path ="+'./furniture/lampRoundFloor.obj')
+  });
+
+  var loungeChair = document.getElementById("loungeChair");
+    loungeChair.addEventListener("click", function(event){
+    furniture_path = './furniture/loungeChair.obj';
+    console.log("furniture path ="+'./furniture/loungeChair.obj')
+  });
+
+  var loungeSofa = document.getElementById("loungeSofa");
+    loungeSofa.addEventListener("click", function(event){
+    furniture_path = './furniture/loungeSofa.obj';
+    console.log("furniture path ="+'./furniture/loungeSofa.obj')
+  });
+
+  var televisionModern = document.getElementById("televisionModern");
+    televisionModern.addEventListener("click", function(event){
+    furniture_path = './furniture/televisionModern.obj';
+    console.log("furniture path ="+'./furniture/televisionModern.obj')
+  });
+
+  var washer = document.getElementById("washer");
+    washer.addEventListener("click", function(event){
+    furniture_path = './furniture/washer.obj';
+    console.log("furniture path ="+'./furniture/washer.obj')
+  });
+
 
    initThree();
    addDirectionalLight();
@@ -121,7 +206,7 @@ window.onload = function () {
       // add grid
 	  // size 고정
       var size = 8;
-      
+
       grid = new THREE.Object3D();
       gridH = new THREE.GridHelper(size, roomsize, 0x0000ff, 0x808080);
       gridH.position.y = 0;
@@ -129,7 +214,7 @@ window.onload = function () {
       gridH.position.z = 0;
       grid.add(gridH);
       scene.add(grid);
-      
+
       // 장판깔기
       mouse.x = 4;
       mouse.y = -4;
@@ -264,7 +349,7 @@ window.onload = function () {
 // MTLloader.js
 /**
  * Loads a Wavefront .mtl file specifying materials
- * 
+ *
  * @author angelxuanchang
  */
 
@@ -280,7 +365,7 @@ THREE.MTLLoader.prototype = Object.assign( Object.create( THREE.Loader.prototype
 
    /**
 	 * Loads and parses a MTL asset from a URL.
-	 * 
+	 *
 	 * @param {String}
 	 *            url - URL to the MTL file.
 	 * @param {Function}
@@ -289,9 +374,9 @@ THREE.MTLLoader.prototype = Object.assign( Object.create( THREE.Loader.prototype
 	 *            [onProgress] - Callback for download progress.
 	 * @param {Function}
 	 *            [onError] - Callback for download errors.
-	 * 
+	 *
 	 * @see setPath setResourcePath
-	 * 
+	 *
 	 * @note In order for relative texture references to resolve correctly you
 	 *       must call setResourcePath() explicitly prior to load.
 	 */
@@ -320,13 +405,13 @@ THREE.MTLLoader.prototype = Object.assign( Object.create( THREE.Loader.prototype
 
    /**
 	 * Parses a MTL file.
-	 * 
+	 *
 	 * @param {String}
 	 *            text - Content of MTL file
 	 * @return {THREE.MTLLoader.MaterialCreator}
-	 * 
+	 *
 	 * @see setPath setResourcePath
-	 * 
+	 *
 	 * @note In order for relative texture references to resolve correctly you
 	 *       must call setResourcePath() explicitly prior to parse.
 	 */
@@ -393,7 +478,7 @@ THREE.MTLLoader.prototype = Object.assign( Object.create( THREE.Loader.prototype
 
 /**
  * Create a new THREE-MTLLoader.MaterialCreator
- * 
+ *
  * @param baseUrl -
  *            Url relative to which textures are loaded
  * @param options -
