@@ -169,14 +169,16 @@ window.onload = function () {
             obj_loader.load(obj,
             function(object) {
                 let mesh = object.children[0]
+                mesh.scale.x = mesh.scale.y = mesh.scale.z = 3;
                 scene.add(mesh);
+                objarr.push(mesh);
             },
         )
        }// [End] 수정된 부분
        , function (error) {
            // 로드가 실패했을때 호출하는 함수
            console.error('MTLLoader 로드 중 오류가 발생하였습니다.', error);
-           alert('MTLLoader 로드 중 오류가 발생하였습니다.');
+           //alert('MTLLoader 로드 중 오류가 발생하였습니다.');//빡쳐서 주석함
        }
      );
    }
