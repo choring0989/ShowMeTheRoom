@@ -321,13 +321,13 @@ window.onload = function () {
 
 		function dragStartCallback(event) {
 			controls.enabled = false;
-			startColor = event.object.material.color.getHex();
-			event.object.material.color.setHex(0x000000);
+			//startColor = event.object.material.color.getHex();
+			//event.object.material.color.setHex(0x000000);
 		}
 
 		function dragendCallback(event) {
 			controls.enabled = true;
-			event.object.material.color.setHex(startColor);
+			//event.object.material.color.setHex(startColor);
 		}
 
 		function animate() {
