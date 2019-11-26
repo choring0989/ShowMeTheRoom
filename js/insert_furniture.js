@@ -8,7 +8,7 @@ window.onload = function () {
    let mouse;
    let loader; // OBJLoader 객체를 넣을 변수를 선언
    let cl, roomsize; 
-   let furniture_size = 3.35;
+   let furniture_size = 3.35;//
    let objarr = new Array();
    let mtlLoader; // MTLLoader 객체를 넣을 변수
    room_floor = './furniture/floorFull.obj'
