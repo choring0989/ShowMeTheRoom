@@ -16,16 +16,31 @@ window.onload = function () {
 
 	/** mouse click event function for inserting furniture */
 	let onMouseClick = function(e){
-		if (cl==1) {
-			// grid 변의 길이
-			var wh = 360/(roomsize/2);
+		if (cl==1) {// grid 변의 길이
+			var wh = 360/4;
 			console.log('wh=');
 			console.log(wh);
-			mouse.x = Math.round((e.clientX - 680) / wh);
-			mouse.y = Math.round((e.clientY - 300) / wh);
-			mouse.z = 0;
-			console.log(e.clientX, e.clientY);
-			console.log(mouse.x, mouse.y);
+			if(e.clientY <326){
+				if(e.clientX < 796){
+				mouse.x = (e.clientX - 680) / wh-1.2;
+				mouse.y = (e.clientY - 300) / wh-0.9;
+				}
+				else{				
+				mouse.x = (e.clientX - 680) / wh-0.3;
+				mouse.y = (e.clientY - 300) / wh-0.9;
+				}
+			
+			}
+			else{
+			if(e.clientX < 796){
+				mouse.x = (e.clientX - 680) / wh-1.2;
+				mouse.y = (e.clientY - 300) / wh-0.1;
+				}
+				else{
+				mouse.x = (e.clientX - 680) / wh-0.3;
+				mouse.y = (e.clientY - 300) / wh-0.1;
+				}
+			}
 
 			loadMTLLoader(mouse, furniture_path, furniture_size, 1);
 		}
