@@ -318,6 +318,7 @@ window.onload = function () {
 		object_controls = new THREE.DragControls( objarr, camera, renderer.domElement );
 		object_controls.addEventListener( 'dragstart', dragStartCallback );
 		object_controls.addEventListener( 'dragend', dragendCallback );
+		
 
 		function dragStartCallback(event) {
 			controls.enabled = false;
