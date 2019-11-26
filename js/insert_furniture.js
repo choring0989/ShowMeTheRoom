@@ -69,11 +69,6 @@ window.onload = function () {
 			inner = document.getElementById("roomsize").innerText;
 		}
 	});
-	
-	initThree();
-	initThree();
-	addDirectionalLight();
-	addGridView();
 
 	/** [Start] furniture button listener */
 	var benchCushion = document.getElementById("benchCushion");
@@ -165,11 +160,14 @@ window.onload = function () {
 		furniture_path = './furniture/washer.obj';
 		console.log("furniture path ="+'./furniture/washer.obj')
 	});
-
 	/** [End] furniture button listener */
+	
+	initThree();
+	addDirectionalLight();
+	addGridView();
 
-   // button event
-   /** *************Insert Furniture Mode********************** */
+	// button event
+	/** *************Insert Furniture Mode********************** */
 	var InsertButton = document.getElementById("insert");
     InsertButton.addEventListener("click", function(event) {
 		camera.position.x = 0;
@@ -270,18 +268,18 @@ window.onload = function () {
 		});
 	}
 
-		// furnitre 이름 목록 불러오
-		function getFilename(){
-			var testFolder = './furniture';
-			var fs = require('fs');
+	// furnitre 이름 목록 불러오
+	function getFilename(){
+		var testFolder = './furniture';
+		var fs = require('fs');
 
-			fs.readdir(testFolder, function(error, filelist){
-				console.log(filelist);
-			})
-		}
+		fs.readdir(testFolder, function(error, filelist){
+			console.log(filelist);
+		})
+	}
 
-		/** Threejs 초기화 함수 */
-		function initThree() {
+	/** Threejs 초기화 함수 */
+	function initThree() {
 		let container;
 		camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 		// set camera position
@@ -344,6 +342,6 @@ window.onload = function () {
 			controls.update();
 		}
 
-			animate();
+		animate();
 	}
 }
