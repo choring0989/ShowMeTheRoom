@@ -56,7 +56,7 @@ window.onload = function () {
 	});
 
 	btn_minus.addEventListener("click", function(event) {
-		if (Number(inner) > 6) {
+		if (Number(inner) > 8) {
 			furniture_size = furniture_size*1.2;
 			document.getElementById("roomsize").innerText = Number(inner)-2;
 			roomsize = document.getElementById("roomsize").innerText;
