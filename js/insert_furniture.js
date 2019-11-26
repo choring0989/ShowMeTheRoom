@@ -3,7 +3,7 @@ var furniture_path;
 
 window.onload = function () {
 	// variables
-	furniture_path = './furniture/bathroomCabinet.obj'
+	furniture_path = ''
 	let scene = new THREE.Scene();
 	let light, gird, gridH, camera;
 	let mouse;
@@ -41,8 +41,13 @@ window.onload = function () {
 				mouse.y = (e.clientY - 300) / wh-0.1;
 				}
 			}
-
-			loadMTLLoader(mouse, furniture_path, furniture_size, 1);
+			if(mouse.x >= (roomsize/2) || mouse.y >= (roomsize/2) || mouse.x <= -(roomsize/2) || mouse.y <= -(roomsize/2)) {
+				console.log("not in area");
+			}
+			else {
+				loadMTLLoader(mouse, furniture_path, furniture_size, 1);
+				console.log("in area")
+			}
 		}
 	}
 
