@@ -339,12 +339,23 @@ window.onload = function () {
 			var obj_loader = new THREE.OBJLoader();
 			obj_loader.setMaterials(materials)
 			obj_loader.load(obj, function(object) {
-				let mesh = object.children[0]
+				
+				// drag 가능, obj 파일 완전히 X
+				let mesh = object.children[0];
 				if (position.z == null) position.z = 0;
 				mesh.position.set(position.x, position.z, position.y);
 				mesh.scale.x = mesh.scale.y = mesh.scale.z = size;
 				scene.add(mesh);
 				if(flag == 1){ objarr.push(mesh); }
+				
+				// drag 불가능, obj 파일 완전히 O
+				/*
+				if (position.z == null) position.z = 0;
+				object.position.set(position.x, position.z, position.y);
+				object.scale.x = object.scale.y = object.scale.z = size;
+				scene.add(object);
+				if(flag == 1){ objarr.push(object); }
+				*/
 			},)
 		}// [End] 수정된 부분
 		, function (error) {
