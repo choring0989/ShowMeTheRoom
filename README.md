@@ -39,3 +39,8 @@
 ## Tech Stack
 * WebGL
 * three.js
+
+</br>
+
+__This project requires web server. Reccomand to use__
+[Web Server for Chrome](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb)
