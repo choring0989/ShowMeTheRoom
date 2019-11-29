@@ -1,6 +1,9 @@
 # Show me the room
 > Room making Web application with WebGL
 
+__This project requires web server. Reccomand to use__
+[Web Server for Chrome](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb)
+
 ![Alt text](./img/room_example.png)
 
 ## ScreenShots
@@ -42,5 +45,3 @@
 
 </br>
 
-__This project requires web server. Reccomand to use__
-[Web Server for Chrome](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb)
