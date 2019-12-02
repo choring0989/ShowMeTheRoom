@@ -1,6 +1,14 @@
 # Show me the room
 > Room making Web application with WebGL
 
+__This project requires web server to launch local. Reccomand to use__
+[Web Server for Chrome](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb)
+</br>
+
+<pre><a href="https://choring0989.github.io/ShowMeTheRoom">https://chroing0989.github.io/ShowMeTheRoom</a></pre>
+
+</br>
+
 ![Alt text](./img/room_example.png)
 
 ## ScreenShots
@@ -39,3 +47,6 @@
 ## Tech Stack
 * WebGL
 * three.js
+
+</br>
+
