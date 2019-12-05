@@ -45,8 +45,8 @@ __This project requires web server to launch local. Reccomand to use__
 
 
 ## Tech Stack
-* WebGL
-* three.js
+* [WebGL](https://webglfundamentals.org/)
+* [three.js](https://threejs.org/)
 
 </br>
 
