@@ -565,6 +565,7 @@ ol {
 }
 
 .user-panel {
+	text-overflow: ellipsis;
 	float: right;
 	background: #eb2b63;
 	color: #fff;
@@ -578,6 +579,8 @@ ol {
 }
 
 .user-panel a {
+	max-width: 100px;
+    text-overflow: ellipsis;
 	color: #fff;
 }
 
