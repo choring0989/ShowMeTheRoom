@@ -569,8 +569,7 @@ ol {
 	float: right;
 	background: #eb2b63;
 	color: #fff;
-	margin-left: 30px;
-	margin-right: 70px;
+	margin: auto;
 	margin-top: 15px;
 	font-size: 14px;
 	padding: 12px 19px;
