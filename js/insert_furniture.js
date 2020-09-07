@@ -124,7 +124,6 @@ window.onload = function () {
 		var some_furniture = document.getElementById(item);
 		some_furniture.addEventListener("click", function(event){
 			furniture_path = './furniture/'+item+'.obj';
-			console.log("furniture path ="+'./furniture/'+item+'.obj');
 		});
 	});
 
@@ -249,14 +248,14 @@ window.onload = function () {
 	/** [Start] function to load mtl file */
 	
 	/** [Start] function to get the furniture name */
-	function getFilename(){
-		var testFolder = './furniture';
-		var fs = require('fs');
-
-		fs.readdir(testFolder, function(error, filelist){
-			console.log(filelist);
-		})
-	}
+	//function getFilename(){
+	//	var testFolder = './furniture';
+	//	var fs = require('fs');
+	//
+	//	fs.readdir(testFolder, function(error, filelist){
+	//		console.log(filelist);
+	//	})
+	//}
 	/** [End] function to get the furniture name */
 
 	/** [Start] function to initialize Three.js */
